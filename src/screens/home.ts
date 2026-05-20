@@ -40,7 +40,7 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
   content.innerHTML = `
     <!-- Top badge -->
     <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: ${isMobile ? '0.7rem' : '0.8rem'}; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: -0.25rem; font-family: var(--font-display);">
-      Unidad 1
+      Unit 1
     </div>
     
     <div>
@@ -50,24 +50,24 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
     
     <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%;">
       <div style="font-size: ${isMobile ? '0.7rem' : '0.8rem'}; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);">
-        Tu Pasaporte de Logros
+        Your Achievement Passport
       </div>
       <div id="passport-preview-container" style="animation: float 6s ease-in-out infinite;"></div>
     </div>
     
     <div style="display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: ${isMobile ? '100%' : '320px'};">
       <button id="btn-play" class="btn-premium btn-primary">
-        <span>🎮</span> Jugar
+        <span>🎮</span> Play
       </button>
       
       ${state.reviewQueue.length > 0 ? `
         <button id="btn-review" class="btn-premium btn-accent">
-          <span>🔄</span> Repasar Errores
+          <span>🔄</span> Review Mistakes
         </button>
       ` : ''}
       
       <button id="btn-stats" class="btn-premium btn-secondary">
-        <span>📊</span> Estadísticas
+        <span>📊</span> Statistics
       </button>
     </div>
   `;

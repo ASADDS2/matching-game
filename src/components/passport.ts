@@ -172,7 +172,7 @@ export class PassportComponent {
     
     stampEl.innerHTML = `
       <div style="font-size: 1.35rem; margin-bottom: 1px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">${this.getIcon(stamp.iconName)}</div>
-      <div style="font-family: var(--font-display); letter-spacing: 0.5px; font-weight: 700; transform: scale(0.95);">MÓDULO ${stamp.mode + 1}</div>
+      <div style="font-family: var(--font-display); letter-spacing: 0.5px; font-weight: 700; transform: scale(0.95);">MODULE ${stamp.mode + 1}</div>
     `;
 
     // Interactive scale on seal hover

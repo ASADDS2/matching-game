@@ -192,7 +192,7 @@ export class StatsModalComponent {
 
     const btnReset = modal.querySelector('#btn-reset-data') as HTMLButtonElement;
     btnReset.addEventListener('click', () => {
-      const confirmReset = window.confirm('¿Estás seguro de que deseas restablecer todo tu progreso? Se borrarán tus mejores puntuaciones y pasaporte.');
+      const confirmReset = window.confirm('Are you sure you want to reset all your progress? Your best scores and passport will be erased.');
       if (confirmReset) {
         setState(defaultState);
         this.close();
