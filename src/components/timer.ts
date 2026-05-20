@@ -22,7 +22,7 @@ export class TimerComponent {
     const circumference = 2 * Math.PI * radius;
     
     this.el.innerHTML = `
-      <svg width="60" height="60" viewBox="0 0 50 50" class="timer-svg">
+      <svg width="100%" height="100%" viewBox="0 0 50 50" class="timer-svg" preserveAspectRatio="xMidYMid meet" style="display:block;">
         <circle cx="25" cy="25" r="${radius}" fill="none" stroke="var(--color-border)" stroke-width="4"></circle>
         <circle class="timer-progress" cx="25" cy="25" r="${radius}" fill="none" stroke="var(--color-success)" stroke-width="4"
           stroke-dasharray="${circumference}" stroke-dashoffset="0" transform="rotate(-90 25 25)"

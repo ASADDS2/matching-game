@@ -75,7 +75,7 @@ export function renderModeSelect(
       <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
         ← Back
       </button>
-      <h1 class="gradient-text" style="font-size: 2.25rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Game Modes</h1>
+      <h1 class="gradient-text" style="font-size: clamp(1.4rem, 5vw, 2.25rem); font-weight: 800; margin: 0; font-family: var(--font-display);">Game Modes</h1>
       <div class="spacer" style="width: 100px;"></div>
     </div>
 

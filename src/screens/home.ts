@@ -21,7 +21,7 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
 
   // Home Screen Content Wrapper
   const content = document.createElement('div');
-  content.className = 'glass-panel';
+  content.className = 'glass-panel home-content';
   Object.assign(content.style, {
     display: 'flex',
     flexDirection: 'column',
@@ -55,7 +55,7 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
       <div id="passport-preview-container" style="animation: float 6s ease-in-out infinite;"></div>
     </div>
     
-    <div style="display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: ${isMobile ? '100%' : '320px'};">
+    <div class="home-buttons" style="display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: ${isMobile ? '100%' : '320px'};">
       <button id="btn-play" class="btn-premium btn-primary">
         <span>🎮</span> Play
       </button>

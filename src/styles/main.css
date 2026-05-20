@@ -57,13 +57,20 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--color-bg-gradient);
   color: var(--color-text);
   line-height: 1.5;
   min-height: 100vh;
-  overflow-x: hidden;
+  min-height: 100svh;
   transition: background 0.3s, color 0.3s;
   position: relative;
 }
@@ -73,8 +80,23 @@ body {
   margin: 0 auto;
   padding: 2rem;
   min-height: 100vh;
+  min-height: 100svh;
   position: relative;
   z-index: 10;
+  width: 100%;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure long words / phrases don't overflow on narrow screens */
+h1, h2, h3, h4, p, span, div {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Glassmorphism Panel Utility */
@@ -105,15 +127,16 @@ body {
 
 /* Background Blobs */
 .bg-blob {
-  position: absolute;
-  width: 500px;
-  height: 500px;
+  position: fixed;
+  width: min(500px, 70vw);
+  height: min(500px, 70vw);
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.15;
   z-index: 1;
   pointer-events: none;
   animation: float-slow 20s ease-in-out infinite;
+  will-change: transform;
 }
 
 .bg-blob-1 {
@@ -253,12 +276,69 @@ body {
    CARD COMPONENT
    ============================================ */
 .card {
-  width: 100px;
-  height: 140px;
+  width: clamp(64px, 18vw, 100px);
+  height: clamp(92px, 25vw, 140px);
   perspective: 1000px;
   cursor: pointer;
   margin: 6px;
   flex-shrink: 0;
+}
+
+.card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+  border-radius: var(--radius-md);
+}
+
+.card .card-front,
+.card .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: clamp(6px, 2vw, 12px);
+  word-break: break-word;
+  font-size: clamp(0.7rem, 2.6vw, 1.2rem);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.card .card-front {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: clamp(1.25rem, 5vw, 2rem);
+}
+
+.card .card-back {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transform: rotateY(180deg);
+  border: 2px solid var(--color-border);
+}
+
+/* Grid container should never overflow horizontally on small screens */
+#grid-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE — LAPTOP (≤1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  #app {
+    padding: 1.5rem;
+  }
 }
 
 /* ============================================
@@ -275,14 +355,26 @@ body {
   }
 
   .bg-blob {
-    width: 300px;
-    height: 300px;
+    width: min(300px, 60vw);
+    height: min(300px, 60vw);
     filter: blur(80px);
   }
 
   .btn-premium {
     font-size: 0.95rem;
     padding: 0.7rem 1.1rem;
+  }
+
+  /* Game header allows wrapping on tighter widths */
+  .game-screen-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Mode select header tightens spacing */
+  .modes-header h1,
+  .modes-header .gradient-text {
+    font-size: clamp(1.4rem, 4vw, 2.1rem) !important;
   }
 }
 
@@ -300,8 +392,8 @@ body {
   }
 
   .bg-blob {
-    width: 200px;
-    height: 200px;
+    width: min(220px, 55vw);
+    height: min(220px, 55vw);
     filter: blur(60px);
   }
 
@@ -313,8 +405,8 @@ body {
 
   /* Smaller cards so the grid doesn't overflow horizontally */
   .card {
-    width: 74px;
-    height: 106px;
+    width: clamp(60px, 21vw, 80px);
+    height: clamp(84px, 30vw, 110px);
     margin: 3px;
   }
 
@@ -326,14 +418,14 @@ body {
 
   /* Game screen: header layout */
   .game-screen-header {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
   }
 
   /* Shrink h1 inside game headers */
   .game-screen-header h1,
   .game-screen-header .gradient-text {
-    font-size: 1.25rem !important;
+    font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
   }
 
   .game-screen-header div[style*="0.8rem"] {
@@ -357,8 +449,9 @@ body {
   }
 
   /* Mode select header: hide spacer, shrink title */
-  .modes-header h1 {
-    font-size: 1.35rem !important;
+  .modes-header h1,
+  .modes-header .gradient-text {
+    font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
   }
 
   .modes-header .spacer {
@@ -402,6 +495,33 @@ body {
   .mode-card {
     gap: 0.5rem !important;
   }
+
+  /* Theme toggle compact and out of the way */
+  .theme-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    font-size: 1.1rem !important;
+  }
+
+  /* Results screen title clamp */
+  .results-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem) !important;
+  }
+
+  /* Stars in results scale down on tight screens */
+  .results-stars {
+    font-size: clamp(2.2rem, 9vw, 3.5rem) !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Stats modal padding for tight screens */
+  .modal-backdrop .glass-panel {
+    padding: 1.25rem !important;
+    width: calc(100% - 1.5rem) !important;
+    max-height: 90dvh !important;
+  }
 }
 
 /* ============================================
@@ -409,8 +529,8 @@ body {
    ============================================ */
 @media (max-width: 360px) {
   .card {
-    width: 62px;
-    height: 90px;
+    width: clamp(52px, 22vw, 68px);
+    height: clamp(74px, 32vw, 96px);
     margin: 2px;
   }
 
@@ -421,6 +541,16 @@ body {
   .btn-premium {
     font-size: 0.82rem;
     padding: 0.55rem 0.85rem;
+  }
+
+  /* Folder targets stack on very narrow widths */
+  .folders-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Answer buttons in Feeling vs Thing stack too */
+  .answer-buttons-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -474,5 +604,42 @@ body {
 
   .folder-target {
     min-height: 80px;
+  }
+
+  /* Disable 3D tilt on touch since there is no real hover */
+  .passport-container {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   LANDSCAPE — SHORT VIEWPORTS (e.g., phone landscape)
+   ============================================ */
+@media (max-height: 480px) and (orientation: landscape) {
+  #app {
+    padding: 0.75rem;
+  }
+
+  .bg-blob {
+    width: min(180px, 40vw);
+    height: min(180px, 40vw);
+    filter: blur(60px);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -25,16 +25,19 @@ export function renderResults(
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
+  const isMobile = window.innerWidth <= 480;
+
   const content = document.createElement('div');
-  content.className = 'glass-panel';
+  content.className = 'glass-panel results-screen';
   Object.assign(content.style, {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '1.75rem',
+    gap: isMobile ? '1.1rem' : '1.75rem',
+    width: '100%',
     maxWidth: '520px',
-    margin: '3rem auto 0 auto',
+    margin: isMobile ? '1rem auto 0 auto' : '3rem auto 0 auto',
     animation: 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
     textAlign: 'center',
     position: 'relative',
@@ -59,13 +62,13 @@ export function renderResults(
       <div style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-family: var(--font-display);">
         Game Completed • ${modeNames[lastResult.mode]}
       </div>
-      <h1 class="gradient-text" style="font-size: 2.75rem; font-weight: 800; line-height: 1.1; margin-top: 0.25rem; font-family: var(--font-display);">
+      <h1 class="gradient-text results-title" style="font-size: clamp(1.6rem, 7vw, 2.75rem); font-weight: 800; line-height: 1.1; margin-top: 0.25rem; font-family: var(--font-display);">
         ${lastResult.stars > 0 ? 'Excellent Work!' : 'Game Over'}
       </h1>
     </div>
 
     <!-- Stars Animation Area -->
-    <div style="display: flex; gap: 1rem; font-size: 3.5rem; justify-content: center; height: 70px; align-items: center; user-select: none;">
+    <div class="results-stars" style="display: flex; gap: 1rem; font-size: clamp(2.2rem, 9vw, 3.5rem); justify-content: center; height: 70px; align-items: center; user-select: none;">
       <span id="star-1" style="color: var(--color-border); opacity: 0.3; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">⭐</span>
       <span id="star-2" style="color: var(--color-border); opacity: 0.3; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">⭐</span>
       <span id="star-3" style="color: var(--color-border); opacity: 0.3; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">⭐</span>
