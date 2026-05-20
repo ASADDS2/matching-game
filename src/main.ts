@@ -1,5 +1,6 @@
 import './styles/main.css';
 import './styles/animations.css';
+import { inject } from '@vercel/analytics';
 import { loadState, getState, setState } from './state';
 import { renderHome } from './screens/home';
 import { renderModeSelect } from './screens/mode-select';
@@ -108,6 +109,7 @@ function onViewportResize() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  inject();
   loadState();
   initTheme();
   router();
