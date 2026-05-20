@@ -105,20 +105,23 @@ export function renderCultureClash(
     const emoji = gestureEmojis[g.gesture] || '👋';
     const name = gestureNames[g.gesture] || g.gesture;
 
+    // Create two identical cards for standard memory matching
+    const cardContent = `<div style="font-size: 2rem; margin-bottom: 4px;">${emoji}</div><div style="font-weight:800; font-size: 0.85rem; color: var(--color-text); line-height: 1.2;">${name}</div>`;
+
     deck.push({
-      id: `${g.id}_gest`,
+      id: `${g.id}_gest_1`,
       matchId: g.id,
-      text: `<div style="font-size: 1.5rem; margin-bottom: 2px;">${emoji}</div><div style="font-weight:700; font-size: 0.78rem;">${name}</div><div style="font-size: 0.65rem; color: var(--color-text-muted); line-height: 1.2; margin-top: 4px;">${g.description}</div>`,
+      text: cardContent,
       tip: g.cultureTip,
       type: 'gesture'
     });
 
     deck.push({
-      id: `${g.id}_tip`,
+      id: `${g.id}_gest_2`,
       matchId: g.id,
-      text: `<div style="font-weight:700; color: var(--color-primary); font-size: 0.78rem; margin-bottom: 4px;">📍 ${g.region}</div><div style="font-size: 0.68rem; line-height: 1.3;">${g.cultureTip}</div>`,
+      text: cardContent,
       tip: g.cultureTip,
-      type: 'tip'
+      type: 'gesture'
     });
   });
 

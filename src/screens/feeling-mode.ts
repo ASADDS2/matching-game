@@ -113,12 +113,8 @@ export function renderFeelingMode(
     const styledSentence = q.sentence.replace('___', '<span style="border-bottom: 2px dashed var(--color-primary); color: var(--color-primary); min-width: 80px; display: inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
     quizSentence.innerHTML = styledSentence;
 
-    // Display clue based on subject type
-    if (q.subject === 'person') {
-      subjectTip.textContent = '💡 Habla sobre un sentimiento de una persona (Use -ed)';
-    } else {
-      subjectTip.textContent = '💡 Describe una cosa o situación que causa la emoción (Use -ing)';
-    }
+    // Removed literal tips to increase difficulty.
+    subjectTip.textContent = '💡 ¿Siente la emoción o la causa?';
 
     // Set options
     edText.textContent = q.edForm;
@@ -129,6 +125,14 @@ export function renderFeelingMode(
     btnIng.className = 'btn-premium btn-secondary';
     btnEd.disabled = false;
     btnIng.disabled = false;
+    
+    // Clear inline styles from previous answers
+    btnEd.style.background = '';
+    btnEd.style.borderColor = '';
+    btnEd.style.color = '';
+    btnIng.style.background = '';
+    btnIng.style.borderColor = '';
+    btnIng.style.color = '';
   }
 
   function handleAnswer(choice: 'ed' | 'ing', clickedBtn: HTMLButtonElement) {

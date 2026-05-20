@@ -143,6 +143,7 @@ export function renderTravelTiles(
     
     // Reveal immediately for face-up speed matching
     cardComp.setState('revealed');
+    cardComp.el.style.pointerEvents = 'auto';
 
     cardComp.el.addEventListener('click', () => {
       if (lockGrid) return;
