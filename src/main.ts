@@ -1,6 +1,7 @@
 import './styles/main.css';
 import './styles/animations.css';
 import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import { loadState, getState, setState } from './state';
 import { renderHome } from './screens/home';
 import { renderModeSelect } from './screens/mode-select';
@@ -110,6 +111,7 @@ function onViewportResize() {
 
 window.addEventListener('DOMContentLoaded', () => {
   inject();
+  injectSpeedInsights();
   loadState();
   initTheme();
   router();
