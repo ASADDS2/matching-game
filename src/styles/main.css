@@ -105,6 +105,11 @@
 /* ============================================
    BASE
    ============================================ */
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -113,8 +118,20 @@ body {
   line-height: 1.5;
   min-height: 100dvh;          /* dvh = respects mobile browser chrome */
   overflow-x: hidden;
+  max-width: 100%;
   transition: background 0.3s, color 0.3s;
   position: relative;
+}
+
+/* Long words / phrases should wrap on narrow screens */
+h1, h2, h3, h4, p, span, div {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
 }
 
 #app {
@@ -307,6 +324,48 @@ body {
   cursor: pointer;
   margin: clamp(2px, 0.5vw, 8px);
   flex-shrink: 0;
+}
+
+.card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+  border-radius: var(--radius-md);
+}
+
+.card .card-front,
+.card .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: clamp(6px, 1.5vw, 12px);
+  word-break: break-word;
+  font-size: clamp(0.75rem, 2.4vw, 1.2rem);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.card .card-front {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: clamp(1.25rem, 5vw, 2rem);
+}
+
+.card .card-back {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transform: rotateY(180deg);
+  border: 2px solid var(--color-border);
 }
 
 /* ============================================
@@ -724,6 +783,29 @@ body {
   .btn-premium  { min-height: 48px; }
   .folder-target { min-height: 100px; }
   .card { margin: clamp(3px, 1vw, 6px); }
+
+  /* Disable 3D tilt of the passport on touch (no real hover) */
+  .passport-container {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ============================================
