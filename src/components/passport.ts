@@ -15,21 +15,27 @@ export class PassportComponent {
   }
 
   private render() {
+    const isMobile = window.innerWidth <= 480;
+    const passportW = isMobile ? Math.min(window.innerWidth - 40, 280) : 320;
+    const passportH = isMobile ? 180 : 220;
+    const passportPad = isMobile ? '14px' : '24px';
+    const passportGap = isMobile ? '8px' : '12px';
+
     // Style the passport container as a luxury booklet
     Object.assign(this.el.style, {
-      width: '320px',
-      height: '220px',
-      background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', // Midnight slate texture
+      width: `${passportW}px`,
+      height: `${passportH}px`,
+      background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
       borderRadius: 'var(--radius-lg)',
       position: 'relative',
-      padding: '24px',
+      padding: passportPad,
       boxShadow: '0 15px 35px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.05), inset 0 -4px 10px rgba(0,0,0,0.6)',
-      border: '2px solid #d4af37', // Gold foiled border
+      border: '2px solid #d4af37',
       overflow: 'hidden',
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
       gridTemplateRows: 'repeat(3, 1fr)',
-      gap: '12px',
+      gap: passportGap,
       transition: 'transform 0.1s ease-out, box-shadow 0.3s ease',
       transformStyle: 'preserve-3d',
       cursor: 'pointer'

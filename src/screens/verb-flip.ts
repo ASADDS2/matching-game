@@ -20,28 +20,30 @@ export function renderVerbFlip(
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
+  const isMobile = window.innerWidth <= 480;
+
   const content = document.createElement('div');
   content.style.width = '100%';
-  content.style.maxWidth = '800px';
-  content.style.margin = '1rem auto 0 auto';
+  content.style.maxWidth = isMobile ? '100%' : '800px';
+  content.style.margin = '0.5rem auto 0 auto';
   content.style.animation = 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
   content.style.position = 'relative';
   content.style.zIndex = '5';
   content.style.display = 'flex';
   content.style.flexDirection = 'column';
-  content.style.gap = '1.5rem';
+  content.style.gap = isMobile ? '0.85rem' : '1.5rem';
 
   // Game UI Header
   content.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+    <div class="game-screen-header" style="display: flex; align-items: center; justify-content: space-between;">
+      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.4rem 0.8rem; font-size: ${isMobile ? '0.8rem' : '0.9rem'}; flex-shrink: 0;">
         ← Volver
       </button>
-      <div>
-        <h1 class="gradient-text" style="font-size: 1.8rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Verb Flip</h1>
-        <div style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">Base ↔ Participle</div>
+      <div style="text-align: center; flex: 1; padding: 0 0.5rem;">
+        <h1 class="gradient-text" style="font-size: clamp(1.1rem, 5vw, 1.8rem); font-weight: 800; margin: 0; font-family: var(--font-display);">Verb Flip</h1>
+        <div style="font-size: clamp(0.65rem, 2.5vw, 0.8rem); color: var(--color-text-muted); text-align: center;">Base ↔ Participle</div>
       </div>
-      <div id="timer-target" style="width: 60px; height: 60px;"></div>
+      <div id="timer-target" style="width: ${isMobile ? '44px' : '60px'}; height: ${isMobile ? '44px' : '60px'}; flex-shrink: 0;"></div>
     </div>
 
     <!-- Match Status -->

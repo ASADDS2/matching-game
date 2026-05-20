@@ -19,50 +19,52 @@ export function renderTimeDetective(
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
+  const isMobile = window.innerWidth <= 480;
+
   const content = document.createElement('div');
   content.style.width = '100%';
-  content.style.maxWidth = '800px';
-  content.style.margin = '1rem auto 0 auto';
+  content.style.maxWidth = isMobile ? '100%' : '800px';
+  content.style.margin = '0.5rem auto 0 auto';
   content.style.animation = 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
   content.style.position = 'relative';
   content.style.zIndex = '5';
   content.style.display = 'flex';
   content.style.flexDirection = 'column';
-  content.style.gap = '1.5rem';
+  content.style.gap = isMobile ? '0.75rem' : '1.5rem';
 
   // Game UI Header
   content.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+    <div class="game-screen-header" style="display: flex; align-items: center; justify-content: space-between;">
+      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.4rem 0.8rem; font-size: ${isMobile ? '0.8rem' : '0.9rem'}; flex-shrink: 0;">
         ← Volver
       </button>
-      <div>
-        <h1 class="gradient-text" style="font-size: 1.8rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Time Detective</h1>
-        <div style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">Simple Past vs. Present Perfect</div>
+      <div style="text-align: center; flex: 1; padding: 0 0.5rem;">
+        <h1 class="gradient-text" style="font-size: clamp(1.1rem, 5vw, 1.8rem); font-weight: 800; margin: 0; font-family: var(--font-display);">Time Detective</h1>
+        <div style="font-size: clamp(0.65rem, 2.5vw, 0.8rem); color: var(--color-text-muted); text-align: center;">Simple Past vs. Present Perfect</div>
       </div>
-      <div id="timer-target" style="width: 60px; height: 60px;"></div>
+      <div id="timer-target" style="width: ${isMobile ? '44px' : '60px'}; height: ${isMobile ? '44px' : '60px'}; flex-shrink: 0;"></div>
     </div>
 
     <!-- Match Status -->
-    <div class="glass-panel" style="padding: 1rem; display: flex; justify-content: space-around; align-items: center; border-radius: var(--radius-md);">
+    <div class="glass-panel" style="padding: ${isMobile ? '0.65rem 0.75rem' : '1rem'}; display: flex; justify-content: space-around; align-items: center; border-radius: var(--radius-md);">
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Casos Resueltos</span>
-        <div id="progress-counter" style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-display);">0 / 8</div>
+        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Casos Resueltos</span>
+        <div id="progress-counter" style="font-size: ${isMobile ? '1.15rem' : '1.4rem'}; font-weight: 800; font-family: var(--font-display);">0 / 8</div>
       </div>
       <div style="width: 1px; height: 30px; background: var(--color-border);"></div>
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Pistas Falsas (Errores)</span>
-        <div id="mistakes-counter" style="font-size: 1.4rem; font-weight: 800; color: var(--color-danger); font-family: var(--font-display);">0</div>
+        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Pistas Falsas (Errores)</span>
+        <div id="mistakes-counter" style="font-size: ${isMobile ? '1.15rem' : '1.4rem'}; font-weight: 800; color: var(--color-danger); font-family: var(--font-display);">0</div>
       </div>
     </div>
 
     <!-- Current Case Sentence Card -->
-    <div class="glass-panel" id="case-card" style="padding: 2.25rem 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; border-radius: var(--radius-lg); min-height: 180px; position: relative; border: 2px solid var(--color-primary); box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);">
-      <div style="position: absolute; top: 12px; left: 15px; font-size: 0.7rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px;">
+    <div class="glass-panel" id="case-card" style="padding: ${isMobile ? '1.25rem 1rem' : '2.25rem 1.5rem'}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.85rem; border-radius: var(--radius-lg); min-height: ${isMobile ? '130px' : '180px'}; position: relative; border: 2px solid var(--color-primary); box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);">
+      <div style="position: absolute; top: 10px; left: 12px; font-size: 0.65rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px;">
         🔍 Evidencia Analizada
       </div>
       
-      <div id="sentence-text" style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; text-align: center; color: var(--color-text); line-height: 1.4; max-width: 90%;">
+      <div id="sentence-text" style="font-family: var(--font-display); font-size: clamp(0.95rem, 4vw, 1.35rem); font-weight: 700; text-align: center; color: var(--color-text); line-height: 1.4; max-width: 92%;">
         ...
       </div>
       
@@ -72,22 +74,22 @@ export function renderTimeDetective(
     </div>
 
     <!-- Classification Boards / Targets -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; width: 100%;">
+    <div class="folders-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: ${isMobile ? '0.6rem' : '1.25rem'}; width: 100%;">
       <!-- Simple Past Target Folder -->
-      <div id="folder-past" class="glass-panel folder-target" style="padding: 1.5rem; border-radius: var(--radius-lg); text-align: center; cursor: pointer; border: 1.5px dashed var(--color-border); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
-        <div style="font-size: 3rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">📁</div>
-        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; margin: 0; color: var(--color-text);">Simple Past</h4>
-        <div style="font-size: 0.72rem; color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
+      <div id="folder-past" class="glass-panel folder-target" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem'}; border-radius: var(--radius-lg); text-align: center; cursor: pointer; border: 1.5px dashed var(--color-border); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;">
+        <div style="font-size: ${isMobile ? '2.2rem' : '3rem'}; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">📁</div>
+        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(0.8rem, 3vw, 1.1rem); margin: 0; color: var(--color-text);">Simple Past</h4>
+        <div style="font-size: clamp(0.6rem, 2vw, 0.72rem); color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
           Acciones terminadas en tiempo específico.<br>
           <em>(yesterday, ago, last week)</em>
         </div>
       </div>
 
       <!-- Present Perfect Target Folder -->
-      <div id="folder-perfect" class="glass-panel folder-target" style="padding: 1.5rem; border-radius: var(--radius-lg); text-align: center; cursor: pointer; border: 1.5px dashed var(--color-border); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
-        <div style="font-size: 3rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">🗂️</div>
-        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; margin: 0; color: var(--color-text);">Present Perfect</h4>
-        <div style="font-size: 0.72rem; color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
+      <div id="folder-perfect" class="glass-panel folder-target" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem'}; border-radius: var(--radius-lg); text-align: center; cursor: pointer; border: 1.5px dashed var(--color-border); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;">
+        <div style="font-size: ${isMobile ? '2.2rem' : '3rem'}; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">🗂️</div>
+        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(0.8rem, 3vw, 1.1rem); margin: 0; color: var(--color-text);">Present Perfect</h4>
+        <div style="font-size: clamp(0.6rem, 2vw, 0.72rem); color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
           Experiencias, tiempo no específico o conecta al presente.<br>
           <em>(already, never, yet, for/since)</em>
         </div>

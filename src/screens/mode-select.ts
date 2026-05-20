@@ -71,16 +71,16 @@ export function renderModeSelect(
 
   content.innerHTML = `
     <!-- Top Bar with Back Button -->
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+    <div class="modes-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
       <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
         ← Volver
       </button>
       <h1 class="gradient-text" style="font-size: 2.25rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Modos de Juego</h1>
-      <div style="width: 100px;"></div> <!-- Spacer to center the title -->
+      <div class="spacer" style="width: 100px;"></div>
     </div>
 
     <!-- Grid of game modes -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%;">
+    <div class="modes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%;">
       ${modes.map(mode => {
         const score = state.scores[mode.index] || { stars: 0, bestScore: 0 };
         const starText = '⭐'.repeat(score.stars) + '☆'.repeat(3 - score.stars);
