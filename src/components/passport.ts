@@ -1,4 +1,4 @@
-import { StampRecord } from '../state';
+import type { StampRecord } from '../state';
 
 export class PassportComponent {
   private el: HTMLElement;
@@ -73,7 +73,7 @@ export class PassportComponent {
       width: '80%',
       height: '80%',
       borderRadius: '50%',
-      border: \`3px solid \${color}\`,
+      border: `3px solid ${color}`,
       color: color,
       display: 'flex',
       flexDirection: 'column',
@@ -86,10 +86,10 @@ export class PassportComponent {
       backgroundColor: 'rgba(255,255,255,0.9)'
     });
     
-    stampEl.innerHTML = \`
-      <div style="font-size: 1.2rem; margin-bottom: 2px;">\${this.getIcon(stamp.iconName)}</div>
-      <div>MODE \${stamp.mode + 1}</div>
-    \`;
+    stampEl.innerHTML = `
+      <div style="font-size: 1.2rem; margin-bottom: 2px;">${this.getIcon(stamp.iconName)}</div>
+      <div>MODE ${stamp.mode + 1}</div>
+    `;
     
     if (animate) {
       stampEl.style.animation = 'stamp-land 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
