@@ -1,0 +1,55 @@
+/* Animations */
+
+@keyframes card-flip {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(180deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+@keyframes pulse-success {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 153, 34, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(99, 153, 34, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 153, 34, 0); }
+}
+
+@keyframes slide-in-top {
+  0% { transform: translateY(-40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes stamp-land {
+  0% { transform: scale(0) rotateZ(-15deg); }
+  50% { transform: scale(1.15) rotateZ(5deg); }
+  100% { transform: scale(1) rotateZ(0deg); }
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in-up {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes modal-in {
+  0% { transform: translate(-50%, -45%) scale(0.95); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
