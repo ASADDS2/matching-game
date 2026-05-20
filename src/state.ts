@@ -20,6 +20,7 @@ export interface GameState {
   sessionStats: { correct: number; wrong: number; timeMs: number };
   reviewQueue: string[];
   audioEnabled: boolean;
+  lastResult: { mode: number; score: number; stars: 0 | 1 | 2 | 3; timeTaken: number } | null;
 }
 
 const STORAGE_KEY = 'top_notch_2_game_state';
@@ -40,6 +41,7 @@ export const defaultState: GameState = {
   sessionStats: { correct: 0, wrong: 0, timeMs: 0 },
   reviewQueue: [],
   audioEnabled: true,
+  lastResult: null,
 };
 
 let state: GameState = { ...defaultState };
@@ -80,4 +82,46 @@ export function setState(newState: Partial<GameState>): void {
 
 export function resetSessionStats(): void {
   setState({ sessionStats: { correct: 0, wrong: 0, timeMs: 0 } });
+}
+
+export function completeGame(modeIndex: number, score: number, stars: 0 | 1 | 2 | 3, timeTaken: number): void {
+  const currentState = getState();
+  const currentScores = { ...currentState.scores };
+  const modeScore = currentScores[modeIndex] || { stars: 0, lastPlayed: null, bestScore: 0 };
+  
+  // Calculate new bests
+  const updatedStars = Math.max(modeScore.stars, stars) as 0|1|2|3;
+  const updatedBest = Math.max(modeScore.bestScore, score);
+  
+  currentScores[modeIndex] = {
+    stars: updatedStars,
+    lastPlayed: Date.now(),
+    bestScore: updatedBest
+  };
+
+  // Check passport stamp
+  const updatedPassport = [...currentState.passport];
+  const hasStamp = updatedPassport.some(s => s.mode === modeIndex);
+
+  // Award stamp if they complete with at least 1 star and don't have it yet
+  if (stars > 0 && !hasStamp) {
+    const stampIcon = stars === 3 ? 'trophy' : (modeIndex === 3 ? 'plane' : 'star');
+    updatedPassport.push({
+      id: 'stamp_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+      mode: modeIndex,
+      iconName: stampIcon,
+      dateEarned: Date.now()
+    });
+  }
+
+  setState({
+    scores: currentScores,
+    passport: updatedPassport,
+    lastResult: {
+      mode: modeIndex,
+      score: score,
+      stars: stars,
+      timeTaken: timeTaken
+    }
+  });
 }
