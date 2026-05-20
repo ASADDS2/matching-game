@@ -49,7 +49,7 @@ export function renderFeelingMode(
     <div class="glass-panel quiz-card" id="quiz-card" style="padding: ${isMobile ? '1.25rem' : '2rem'}; display: flex; flex-direction: column; gap: 1rem; border-radius: var(--radius-lg); position: relative; overflow: hidden; min-height: ${isMobile ? '180px' : '250px'}; justify-content: center; align-items: center;">
       <!-- Question progress badge -->
       <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;" id="progress-badge">
-        Pregunta 1 / 6
+        Question 1 / 6
       </div>
 
       <!-- Sentence -->
@@ -67,11 +67,11 @@ export function renderFeelingMode(
     <div class="answer-buttons-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: ${isMobile ? '0.6rem' : '1rem'}; width: 100%;">
       <button id="btn-opt-ed" class="btn-premium btn-secondary" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem 1rem'}; font-size: ${isMobile ? '1rem' : '1.15rem'}; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
         <span id="opt-ed-text">-ed</span>
-        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Feeling / Sentimiento)</span>
+        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Feeling / Emotion)</span>
       </button>
       <button id="btn-opt-ing" class="btn-premium btn-secondary" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem 1rem'}; font-size: ${isMobile ? '1rem' : '1.15rem'}; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
         <span id="opt-ing-text">-ing</span>
-        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Description / Causa)</span>
+        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Description / Cause)</span>
       </button>
     </div>
   `;
@@ -109,14 +109,14 @@ export function renderFeelingMode(
     isAnswering = false;
     const q = selectedQuestions[currentIdx];
 
-    progressBadge.textContent = `Pregunta ${currentIdx + 1} / 6`;
+    progressBadge.textContent = `Question ${currentIdx + 1} / 6`;
     
     // Replace "___" with a stylized blank
     const styledSentence = q.sentence.replace('___', '<span style="border-bottom: 2px dashed var(--color-primary); color: var(--color-primary); min-width: 80px; display: inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
     quizSentence.innerHTML = styledSentence;
 
     // Removed literal tips to increase difficulty.
-    subjectTip.textContent = '💡 ¿Siente la emoción o la causa?';
+    subjectTip.textContent = '💡 Feeling or cause of the emotion?';
 
     // Set options
     edText.textContent = q.edForm;

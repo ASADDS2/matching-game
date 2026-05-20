@@ -49,19 +49,19 @@ export function renderTravelTiles(
     <!-- Match Status -->
     <div class="glass-panel" style="padding: 1rem; display: flex; justify-content: space-around; align-items: center; border-radius: var(--radius-md);">
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Progreso</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Progress</span>
         <div id="matches-counter" style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-display);">0 / 6</div>
       </div>
       <div style="width: 1px; height: 30px; background: var(--color-border);"></div>
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Errores</span>
+        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Mistakes</span>
         <div id="mistakes-counter" style="font-size: 1.4rem; font-weight: 800; color: var(--color-danger); font-family: var(--font-display);">0</div>
       </div>
     </div>
 
     <!-- Info message -->
     <div style="font-size: 0.85rem; color: var(--color-text-muted); font-weight: 500; text-align: center; margin-bottom: -0.5rem;">
-      ⚡ ¡Todas las tarjetas están boca arriba! Haz clic en una frase y luego en su definición.
+      ⚡ All cards face up! Click a phrase then its matching definition.
     </div>
 
     <!-- Cards Grid -->
@@ -69,7 +69,7 @@ export function renderTravelTiles(
 
     <!-- City Banner -->
     <div id="city-banner" style="min-height: 52px; background: rgba(59, 130, 246, 0.06); border: 1px dashed var(--color-primary); border-radius: var(--radius-md); padding: 0.75rem 1rem; color: var(--color-text); font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; transform: translateY(10px); transition: all 0.3s ease;">
-      Encuentra las parejas para explorar las ciudades.
+      Find the pairs to explore world cities.
     </div>
   `;
 

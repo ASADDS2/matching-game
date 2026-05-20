@@ -32,7 +32,7 @@ export function renderModeSelect(
       title: 'Verb Flip',
       emoji: '🔄',
       subtitle: 'Verbs & Participles',
-      desc: 'Empareja verbos en infinitivo con su participio irregular. ¡Perfecciona tus tiempos verbales!',
+      desc: 'Match base-form verbs with their irregular past participle. Perfect your verb tenses!',
       tag: 'Grammar • Verbs'
     },
     {
@@ -40,7 +40,7 @@ export function renderModeSelect(
       title: 'Culture Clash',
       emoji: '🤝',
       subtitle: 'Gestures & Etiquette',
-      desc: 'Relaciona saludos y gestos con sus regiones y consejos de etiqueta en todo el mundo.',
+      desc: 'Match greetings and gestures from different regions and learn global etiquette tips.',
       tag: 'Culture • Communication'
     },
     {
@@ -48,7 +48,7 @@ export function renderModeSelect(
       title: 'Feeling vs. Thing',
       emoji: '🤔',
       subtitle: 'Adjectives -ed / -ing',
-      desc: 'Aprende cuándo usar adjetivos terminados en -ed (sentimiento) vs -ing (lo que causa la emoción).',
+      desc: 'Learn when to use -ed adjectives (feelings) vs -ing adjectives (what causes the emotion).',
       tag: 'Adjectives • Vocabulary'
     },
     {
@@ -56,7 +56,7 @@ export function renderModeSelect(
       title: 'Travel Tiles',
       emoji: '✈️',
       subtitle: 'Tourism Vocabulary',
-      desc: 'Empareja frases comunes sobre viajes y turismo con sus significados para recorrer el mundo.',
+      desc: 'Match common travel and tourism phrases with their meanings to explore the world.',
       tag: 'Travel • Idioms'
     },
     {
@@ -64,7 +64,7 @@ export function renderModeSelect(
       title: 'Time Detective',
       emoji: '🕵️‍♂️',
       subtitle: 'Past vs. Present Perfect',
-      desc: 'Clasifica casos policiales de oraciones en Pasado Simple o Presente Perfecto analizando las pistas.',
+      desc: 'Sort sentences into Simple Past or Present Perfect by analyzing the grammar clues.',
       tag: 'Tenses • Syntax'
     }
   ];
@@ -73,9 +73,9 @@ export function renderModeSelect(
     <!-- Top Bar with Back Button -->
     <div class="modes-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
       <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
-        ← Volver
+        ← Back
       </button>
-      <h1 class="gradient-text" style="font-size: 2.25rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Modos de Juego</h1>
+      <h1 class="gradient-text" style="font-size: 2.25rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Game Modes</h1>
       <div class="spacer" style="width: 100px;"></div>
     </div>
 
@@ -104,7 +104,7 @@ export function renderModeSelect(
             
             <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 0.85rem; margin-top: 0.5rem;">
               <div style="font-size: 0.8rem; color: var(--color-text-muted);">
-                Récord: <span style="font-weight: 700; color: var(--color-text);">${score.bestScore}</span>
+                Best: <span style="font-weight: 700; color: var(--color-text);">${score.bestScore}</span>
               </div>
               <div style="color: var(--color-amber); font-size: 0.95rem; letter-spacing: 1px;">
                 ${starText}

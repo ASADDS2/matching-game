@@ -57,10 +57,10 @@ export function renderResults(
   content.innerHTML = `
     <div>
       <div style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-family: var(--font-display);">
-        Partida Completada • ${modeNames[lastResult.mode]}
+        Game Completed • ${modeNames[lastResult.mode]}
       </div>
       <h1 class="gradient-text" style="font-size: 2.75rem; font-weight: 800; line-height: 1.1; margin-top: 0.25rem; font-family: var(--font-display);">
-        ${lastResult.stars > 0 ? '¡Excelente Trabajo!' : 'Fin de la Partida'}
+        ${lastResult.stars > 0 ? 'Excellent Work!' : 'Game Over'}
       </h1>
     </div>
 
@@ -74,12 +74,12 @@ export function renderResults(
     <!-- Score metrics board -->
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; width: 100%;">
       <div style="background: rgba(255, 255, 255, 0.04); padding: 0.85rem; border-radius: var(--radius-md); border: var(--glass-border);">
-        <div style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Puntos</div>
+        <div style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Score</div>
         <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-primary); font-family: var(--font-display);">${lastResult.score}</div>
       </div>
       
       <div style="background: rgba(255, 255, 255, 0.04); padding: 0.85rem; border-radius: var(--radius-md); border: var(--glass-border);">
-        <div style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Tiempo</div>
+        <div style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Time</div>
         <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-text); font-family: var(--font-display);">${lastResult.timeTaken}s</div>
       </div>
     </div>
@@ -89,8 +89,8 @@ export function renderResults(
       <div id="stamp-alert-container" style="background: rgba(245, 158, 11, 0.08); border: 1.5px solid rgba(245, 158, 11, 0.25); border-radius: var(--radius-md); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; text-align: left; width: 100%; animation: fade-in-up 0.5s ease 0.6s forwards; opacity: 0;">
         <div id="results-stamp-seal" style="width: 54px; height: 54px; flex-shrink: 0; position: relative;"></div>
         <div>
-          <h4 style="color: var(--color-amber); font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; margin: 0 0 0.15rem 0;">¡Sello de Pasaporte Desbloqueado!</h4>
-          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0; line-height: 1.35;">Has ganado un nuevo sello de viaje en tu pasaporte de logros de la Unidad 1.</p>
+          <h4 style="color: var(--color-amber); font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; margin: 0 0 0.15rem 0;">Passport Stamp Unlocked!</h4>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0; line-height: 1.35;">You earned a new travel stamp in your Unit 1 achievement passport.</p>
         </div>
       </div>
     ` : ''}
@@ -98,13 +98,13 @@ export function renderResults(
     <!-- Action Buttons -->
     <div style="display: flex; flex-direction: column; gap: 0.85rem; width: 100%; max-width: 320px;">
       <button id="btn-replay" class="btn-premium btn-primary">
-        <span>🔄</span> Jugar de Nuevo
+        <span>🔄</span> Play Again
       </button>
       <button id="btn-select" class="btn-premium btn-secondary">
-        <span>🎮</span> Elegir Otro Modo
+        <span>🎮</span> Choose Another Mode
       </button>
       <button id="btn-home" class="btn-premium btn-secondary" style="background: transparent;">
-        <span>🏠</span> Ir al Inicio
+        <span>🏠</span> Back to Home
       </button>
     </div>
   `;
@@ -193,7 +193,7 @@ export function renderResults(
     
     seal.innerHTML = `
       <div style="font-size: 1rem; margin-bottom: 1px;">${icon}</div>
-      <div style="font-family: var(--font-display); font-weight: 700; transform: scale(0.85);">MÓDULO ${lastStamp.mode + 1}</div>
+      <div style="font-family: var(--font-display); font-weight: 700; transform: scale(0.85);">MODULE ${lastStamp.mode + 1}</div>
     `;
     
     sealContainer.appendChild(seal);

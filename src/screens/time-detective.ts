@@ -48,12 +48,12 @@ export function renderTimeDetective(
     <!-- Match Status -->
     <div class="glass-panel" style="padding: ${isMobile ? '0.65rem 0.75rem' : '1rem'}; display: flex; justify-content: space-around; align-items: center; border-radius: var(--radius-md);">
       <div>
-        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Casos Resueltos</span>
+        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Cases Solved</span>
         <div id="progress-counter" style="font-size: ${isMobile ? '1.15rem' : '1.4rem'}; font-weight: 800; font-family: var(--font-display);">0 / 8</div>
       </div>
       <div style="width: 1px; height: 30px; background: var(--color-border);"></div>
       <div>
-        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Pistas Falsas (Errores)</span>
+        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Wrong Clues (Mistakes)</span>
         <div id="mistakes-counter" style="font-size: ${isMobile ? '1.15rem' : '1.4rem'}; font-weight: 800; color: var(--color-danger); font-family: var(--font-display);">0</div>
       </div>
     </div>
@@ -61,7 +61,7 @@ export function renderTimeDetective(
     <!-- Current Case Sentence Card -->
     <div class="glass-panel" id="case-card" style="padding: ${isMobile ? '1.25rem 1rem' : '2.25rem 1.5rem'}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.85rem; border-radius: var(--radius-lg); min-height: ${isMobile ? '130px' : '180px'}; position: relative; border: 2px solid var(--color-primary); box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);">
       <div style="position: absolute; top: 10px; left: 12px; font-size: 0.65rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px;">
-        🔍 Evidencia Analizada
+        🔍 Evidence under review
       </div>
       
       <div id="sentence-text" style="font-family: var(--font-display); font-size: clamp(0.95rem, 4vw, 1.35rem); font-weight: 700; text-align: center; color: var(--color-text); line-height: 1.4; max-width: 92%;">
@@ -80,7 +80,7 @@ export function renderTimeDetective(
         <div style="font-size: ${isMobile ? '2.2rem' : '3rem'}; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">📁</div>
         <h4 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(0.8rem, 3vw, 1.1rem); margin: 0; color: var(--color-text);">Simple Past</h4>
         <div style="font-size: clamp(0.6rem, 2vw, 0.72rem); color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
-          Acciones terminadas en tiempo específico.<br>
+          Finished actions at a specific time.<br>
           <em>(yesterday, ago, last week)</em>
         </div>
       </div>
@@ -90,7 +90,7 @@ export function renderTimeDetective(
         <div style="font-size: ${isMobile ? '2.2rem' : '3rem'}; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: transform 0.2s;">🗂️</div>
         <h4 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(0.8rem, 3vw, 1.1rem); margin: 0; color: var(--color-text);">Present Perfect</h4>
         <div style="font-size: clamp(0.6rem, 2vw, 0.72rem); color: var(--color-text-muted); font-weight: 500; line-height: 1.3;">
-          Experiencias, tiempo no específico o conecta al presente.<br>
+          Experiences, unspecified time or connection to the present.<br>
           <em>(already, never, yet, for/since)</em>
         </div>
       </div>
