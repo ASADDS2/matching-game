@@ -16,7 +16,7 @@ export class StatsModalComponent {
 
   private createUI() {
     const state = getState();
-    
+
     // Create backdrop overlay
     const overlay = document.createElement('div');
     overlay.className = 'modal-backdrop';
@@ -94,9 +94,9 @@ export class StatsModalComponent {
         <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--color-text); font-weight: 600;">High Scores</h3>
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
           ${[0, 1, 2, 3, 4].map(idx => {
-            const score = state.scores[idx] || { stars: 0, bestScore: 0 };
-            const starText = '⭐'.repeat(score.stars) + '☆'.repeat(3 - score.stars);
-            return `
+      const score = state.scores[idx] || { stars: 0, bestScore: 0 };
+      const starText = '⭐'.repeat(score.stars) + '☆'.repeat(3 - score.stars);
+      return `
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0.85rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-md); border: var(--glass-border);">
                 <div>
                   <div style="font-weight: 600; font-size: 0.9rem; color: var(--color-text);">${modeNames[idx]}</div>
@@ -105,7 +105,7 @@ export class StatsModalComponent {
                 <div style="color: var(--color-amber); font-size: 1rem; letter-spacing: 1px;">${starText}</div>
               </div>
             `;
-          }).join('')}
+    }).join('')}
         </div>
       </div>
 
@@ -182,7 +182,7 @@ export class StatsModalComponent {
 
     const btnClose = modal.querySelector('#btn-modal-close');
     btnClose?.addEventListener('click', () => this.close());
-    
+
     // Close on clicking backdrop
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {

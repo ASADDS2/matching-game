@@ -17,29 +17,13 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
-  const isMobile = window.innerWidth <= 480;
-
   // Home Screen Content Wrapper
   const content = document.createElement('div');
-  content.className = 'glass-panel home-content';
-  Object.assign(content.style, {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: isMobile ? '1rem' : '2rem',
-    maxWidth: '560px',
-    width: '100%',
-    margin: isMobile ? '0.75rem auto 0 auto' : '3rem auto 0 auto',
-    animation: 'fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-    textAlign: 'center',
-    position: 'relative',
-    zIndex: '5'
-  });
+  content.className = 'glass-panel screen-content screen-content--panel';
 
   content.innerHTML = `
     <!-- Top badge -->
-    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: ${isMobile ? '0.7rem' : '0.8rem'}; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: -0.25rem; font-family: var(--font-display);">
+    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: clamp(0.7rem, 2vw, 0.8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: -0.25rem; font-family: var(--font-display);">
       Unit 1
     </div>
     
@@ -49,13 +33,13 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
     </div>
     
     <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%;">
-      <div style="font-size: ${isMobile ? '0.7rem' : '0.8rem'}; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);">
+      <div style="font-size: clamp(0.7rem, 2vw, 0.8rem); color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);">
         Your Achievement Passport
       </div>
       <div id="passport-preview-container" style="animation: float 6s ease-in-out infinite;"></div>
     </div>
     
-    <div class="home-buttons" style="display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: ${isMobile ? '100%' : '320px'};">
+    <div class="home-buttons">
       <button id="btn-play" class="btn-premium btn-primary">
         <span>🎮</span> Play
       </button>
