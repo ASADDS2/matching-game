@@ -6,10 +6,10 @@ export class PassportComponent {
 
   constructor(container: HTMLElement, stamps: StampRecord[] = []) {
     this.stamps = stamps;
-    
+
     this.el = document.createElement('div');
     this.el.className = 'passport-container';
-    
+
     this.render();
     container.appendChild(this.el);
   }
@@ -46,20 +46,20 @@ export class PassportComponent {
       const rect = this.el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const xc = rect.width / 2;
       const yc = rect.height / 2;
-      
+
       const dx = x - xc;
       const dy = y - yc;
-      
+
       const rotX = -(dy / yc) * 12; // tilt angle X
       const rotY = (dx / xc) * 12;  // tilt angle Y
-      
+
       this.el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03, 1.03, 1.03)`;
       this.el.style.boxShadow = '0 25px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.08)';
     });
-    
+
     this.el.addEventListener('mouseleave', () => {
       this.el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       this.el.style.boxShadow = '0 15px 35px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.05)';
@@ -101,7 +101,7 @@ export class PassportComponent {
         transition: 'all 0.3s ease',
         transform: 'translateZ(10px)'
       });
-      
+
       // Soft hover effect on slot
       slot.addEventListener('mouseenter', () => {
         if (!slot.querySelector('.stamp-seal')) {
@@ -110,7 +110,7 @@ export class PassportComponent {
           slot.style.boxShadow = 'inset 0 3px 6px rgba(0,0,0,0.4), 0 0 8px rgba(212, 175, 55, 0.2)';
         }
       });
-      
+
       slot.addEventListener('mouseleave', () => {
         slot.style.borderColor = 'rgba(212, 175, 55, 0.25)';
         slot.style.backgroundColor = 'rgba(0, 0, 0, 0.25)';
@@ -120,7 +120,7 @@ export class PassportComponent {
       slot.dataset.slotIndex = i.toString();
       this.el.appendChild(slot);
     }
-    
+
     this.stamps.forEach((stamp, index) => {
       if (index < 9) {
         this.addStampUI(stamp, index, false);
@@ -131,12 +131,12 @@ export class PassportComponent {
   private addStampUI(stamp: StampRecord, slotIndex: number, animate: boolean) {
     const slots = this.el.querySelectorAll('[data-slot-index]');
     if (slotIndex >= slots.length) return;
-    
+
     const slot = slots[slotIndex] as HTMLElement;
     slot.style.borderColor = 'transparent';
     slot.style.background = 'transparent';
     slot.style.boxShadow = 'none';
-    
+
     const colors = [
       'linear-gradient(135deg, #e11d48, #9f1239)', // Rose wax seal
       'linear-gradient(135deg, #059669, #065f46)', // Emerald wax seal
@@ -145,7 +145,7 @@ export class PassportComponent {
       'linear-gradient(135deg, #7c3aed, #5b21b6)'  // Violet seal
     ];
     const color = colors[stamp.mode % colors.length];
-    
+
     const stampEl = document.createElement('div');
     stampEl.className = 'stamp-seal';
     Object.assign(stampEl.style, {
@@ -169,7 +169,7 @@ export class PassportComponent {
       cursor: 'pointer',
       transition: 'transform 0.2s ease, filter 0.2s ease'
     });
-    
+
     stampEl.innerHTML = `
       <div style="font-size: 1.35rem; margin-bottom: 1px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">${this.getIcon(stamp.iconName)}</div>
       <div style="font-family: var(--font-display); letter-spacing: 0.5px; font-weight: 700; transform: scale(0.95);">MODULE ${stamp.mode + 1}</div>
@@ -185,21 +185,21 @@ export class PassportComponent {
       stampEl.style.transform = 'rotateZ(-10deg) translateZ(20px)';
       stampEl.style.filter = 'brightness(1)';
     });
-    
+
     if (animate) {
       stampEl.style.animation = 'stamp-land 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
     }
-    
+
     slot.innerHTML = '';
     slot.appendChild(stampEl);
   }
-  
+
   public addStamp(stamp: StampRecord) {
     if (this.stamps.length >= 9) return;
     this.stamps.push(stamp);
     this.addStampUI(stamp, this.stamps.length - 1, true);
   }
-  
+
   private getIcon(name: string): string {
     const icons: Record<string, string> = {
       'star': '⭐',

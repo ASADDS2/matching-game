@@ -26,20 +26,7 @@ export function renderResults(
   container.appendChild(blob2);
 
   const content = document.createElement('div');
-  content.className = 'glass-panel';
-  Object.assign(content.style, {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '1.75rem',
-    maxWidth: '520px',
-    margin: '3rem auto 0 auto',
-    animation: 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-    textAlign: 'center',
-    position: 'relative',
-    zIndex: '5'
-  });
+  content.className = 'glass-panel screen-content screen-content--panel';
 
   const modeNames = [
     'Verb Flip',
@@ -96,7 +83,7 @@ export function renderResults(
     ` : ''}
 
     <!-- Action Buttons -->
-    <div style="display: flex; flex-direction: column; gap: 0.85rem; width: 100%; max-width: 320px;">
+    <div class="results-buttons">
       <button id="btn-replay" class="btn-premium btn-primary">
         <span>🔄</span> Play Again
       </button>

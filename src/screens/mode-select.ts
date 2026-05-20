@@ -19,12 +19,8 @@ export function renderModeSelect(
   container.appendChild(blob2);
 
   const content = document.createElement('div');
-  content.style.width = '100%';
-  content.style.maxWidth = '1000px';
-  content.style.margin = '1rem auto 0 auto';
-  content.style.animation = 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-  content.style.position = 'relative';
-  content.style.zIndex = '5';
+  content.className = 'screen-content';
+  content.style.maxWidth = '1000px'; // Override max-width for mode select
 
   const modes = [
     {
@@ -71,16 +67,16 @@ export function renderModeSelect(
 
   content.innerHTML = `
     <!-- Top Bar with Back Button -->
-    <div class="modes-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
-      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+    <div class="modes-header">
+      <button id="btn-back" class="btn-premium btn-secondary btn-inline">
         ← Back
       </button>
-      <h1 class="gradient-text" style="font-size: 2.25rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Game Modes</h1>
-      <div class="spacer" style="width: 100px;"></div>
+      <h1 class="gradient-text modes-header__title">Game Modes</h1>
+      <div class="modes-header__spacer"></div>
     </div>
 
     <!-- Grid of game modes -->
-    <div class="modes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%;">
+    <div class="modes-grid">
       ${modes.map(mode => {
         const score = state.scores[mode.index] || { stars: 0, bestScore: 0 };
         const starText = '⭐'.repeat(score.stars) + '☆'.repeat(3 - score.stars);
