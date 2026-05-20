@@ -79,8 +79,38 @@ export function navigate(screen: 'home' | 'select' | 'game' | 'results', modeInd
   router();
 }
 
+// Re-render on significant viewport size changes so screens that branch on
+// `window.innerWidth` at render time (e.g. isMobile) pick up the new size.
+let lastViewportWidth = window.innerWidth;
+let resizeTimer: number | null = null;
+function onViewportResize() {
+  if (resizeTimer !== null) {
+    clearTimeout(resizeTimer);
+  }
+  resizeTimer = window.setTimeout(() => {
+    const width = window.innerWidth;
+    const crossedBreakpoint =
+      (lastViewportWidth > 480 && width <= 480) ||
+      (lastViewportWidth <= 480 && width > 480) ||
+      (lastViewportWidth > 768 && width <= 768) ||
+      (lastViewportWidth <= 768 && width > 768) ||
+      Math.abs(width - lastViewportWidth) > 200;
+
+    lastViewportWidth = width;
+
+    // Only re-render on layout-impacting changes to avoid disrupting in-game state.
+    // We allow re-render on home/select/results but skip mid-game to avoid losing card state.
+    const state = getState();
+    if (crossedBreakpoint && state.currentScreen !== 'game') {
+      router();
+    }
+  }, 200);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   initTheme();
   router();
+  window.addEventListener('resize', onViewportResize);
+  window.addEventListener('orientationchange', onViewportResize);
 });

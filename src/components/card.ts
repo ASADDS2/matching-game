@@ -26,59 +26,8 @@ export class CardComponent {
   }
 
   private addStyles() {
-    Object.assign(this.el.style, {
-      width: '100px',
-      height: '140px',
-      perspective: '1000px',
-      cursor: 'pointer',
-      margin: '8px'
-    });
-    
-    const inner = this.el.querySelector('.card-inner') as HTMLElement;
-    Object.assign(inner.style, {
-      position: 'relative',
-      width: '100%',
-      height: '100%',
-      textAlign: 'center',
-      transition: 'transform 0.4s',
-      transformStyle: 'preserve-3d',
-      borderRadius: 'var(--radius-md)'
-    });
-    
-    const faces = this.el.querySelectorAll('.card-front, .card-back');
-    faces.forEach((face) => {
-      const el = face as HTMLElement;
-      Object.assign(el.style, {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        backfaceVisibility: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 'var(--radius-md)',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        padding: '12px',
-        wordBreak: 'break-word',
-        fontSize: '1.2rem',
-        userSelect: 'none'
-      });
-    });
-    
-    const front = this.el.querySelector('.card-front') as HTMLElement;
-    Object.assign(front.style, {
-      backgroundColor: 'var(--color-primary)',
-      color: 'white',
-      fontSize: '2rem'
-    });
-    
-    const back = this.el.querySelector('.card-back') as HTMLElement;
-    Object.assign(back.style, {
-      backgroundColor: 'var(--color-surface)',
-      color: 'var(--color-text)',
-      transform: 'rotateY(180deg)',
-      border: '2px solid var(--color-border)'
-    });
+    // Sizing and layout are handled by CSS (see .card rules in main.css) so
+    // media queries can take effect. Only set runtime-only properties here.
   }
 
   public setState(newState: CardState) {
