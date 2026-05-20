@@ -142,7 +142,7 @@ body {
   }
 }
 
-/* Buttons style */
+/* Buttons */
 .btn-premium {
   font-family: var(--font-body);
   display: inline-flex;
@@ -228,7 +228,7 @@ body {
   transform: translateY(0);
 }
 
-/* Theme Toggle Button style override */
+/* Theme Toggle */
 .theme-toggle {
   background: var(--color-surface) !important;
   border: var(--glass-border) !important;
@@ -249,3 +249,230 @@ body {
   box-shadow: var(--shadow-md);
 }
 
+/* ============================================
+   CARD COMPONENT
+   ============================================ */
+.card {
+  width: 100px;
+  height: 140px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 6px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   RESPONSIVE — TABLET (≤768px)
+   ============================================ */
+@media (max-width: 768px) {
+  #app {
+    padding: 1rem;
+  }
+
+  .glass-panel {
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .bg-blob {
+    width: 300px;
+    height: 300px;
+    filter: blur(80px);
+  }
+
+  .btn-premium {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.1rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE (≤480px)
+   ============================================ */
+@media (max-width: 480px) {
+  #app {
+    padding: 0.6rem;
+  }
+
+  .glass-panel {
+    padding: 0.9rem;
+    border-radius: var(--radius-md);
+  }
+
+  .bg-blob {
+    width: 200px;
+    height: 200px;
+    filter: blur(60px);
+  }
+
+  .btn-premium {
+    font-size: 0.88rem;
+    padding: 0.65rem 1rem;
+    gap: 0.5rem;
+  }
+
+  /* Smaller cards so the grid doesn't overflow horizontally */
+  .card {
+    width: 74px;
+    height: 106px;
+    margin: 3px;
+  }
+
+  /* Grid container wraps nicely */
+  #grid-container {
+    gap: 0 !important;
+    justify-content: center;
+  }
+
+  /* Game screen: header layout */
+  .game-screen-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Shrink h1 inside game headers */
+  .game-screen-header h1,
+  .game-screen-header .gradient-text {
+    font-size: 1.25rem !important;
+  }
+
+  .game-screen-header div[style*="0.8rem"] {
+    font-size: 0.7rem !important;
+  }
+
+  /* Timer */
+  #timer-target {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  /* Stats bar (Progreso/Errores) */
+  .stats-row {
+    padding: 0.65rem 0.75rem !important;
+  }
+
+  /* Mode select grid: single column */
+  .modes-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Mode select header: hide spacer, shrink title */
+  .modes-header h1 {
+    font-size: 1.35rem !important;
+  }
+
+  .modes-header .spacer {
+    display: none !important;
+  }
+
+  /* Home screen title */
+  .home-content h1 {
+    font-size: 2rem !important;
+  }
+
+  .home-content h2 {
+    font-size: 1rem !important;
+  }
+
+  .home-content .home-buttons {
+    max-width: 100% !important;
+  }
+
+  /* Feeling vs Thing: quiz card */
+  .quiz-card {
+    padding: 1.25rem !important;
+    min-height: 180px !important;
+  }
+
+  .quiz-sentence {
+    font-size: 1.1rem !important;
+  }
+
+  /* Feeling vs Thing: answer buttons */
+  .answer-buttons-grid {
+    gap: 0.6rem !important;
+  }
+
+  .answer-buttons-grid button {
+    padding: 1rem 0.5rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Results / mode select card */
+  .mode-card {
+    gap: 0.5rem !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — VERY SMALL (≤360px)
+   ============================================ */
+@media (max-width: 360px) {
+  .card {
+    width: 62px;
+    height: 90px;
+    margin: 2px;
+  }
+
+  .home-content h1 {
+    font-size: 1.7rem !important;
+  }
+
+  .btn-premium {
+    font-size: 0.82rem;
+    padding: 0.55rem 0.85rem;
+  }
+}
+
+/* ============================================
+   TIME DETECTIVE & FOLDER TARGETS - MOBILE
+   ============================================ */
+@media (max-width: 480px) {
+  .folders-grid {
+    gap: 0.6rem !important;
+  }
+
+  .folder-target {
+    padding: 0.85rem 0.5rem !important;
+  }
+
+  .folder-target h4 {
+    font-size: 0.88rem !important;
+  }
+
+  #case-card {
+    padding: 1.25rem 1rem !important;
+    min-height: 140px !important;
+  }
+
+  #sentence-text {
+    font-size: 1.05rem !important;
+  }
+
+  .game-screen-header {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
+  .game-screen-header h1 {
+    font-size: 1.15rem !important;
+    white-space: nowrap;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICE HELPERS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .mode-card:hover {
+    transform: none !important;
+  }
+
+  .btn-premium {
+    min-height: 44px;
+  }
+
+  .folder-target {
+    min-height: 80px;
+  }
+}

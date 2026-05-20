@@ -19,57 +19,59 @@ export function renderFeelingMode(
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
+  const isMobile = window.innerWidth <= 480;
+
   const content = document.createElement('div');
   content.style.width = '100%';
-  content.style.maxWidth = '600px';
-  content.style.margin = '1rem auto 0 auto';
+  content.style.maxWidth = isMobile ? '100%' : '600px';
+  content.style.margin = '0.5rem auto 0 auto';
   content.style.animation = 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
   content.style.position = 'relative';
   content.style.zIndex = '5';
   content.style.display = 'flex';
   content.style.flexDirection = 'column';
-  content.style.gap = '1.5rem';
+  content.style.gap = isMobile ? '0.75rem' : '1.5rem';
 
   // Game UI Header
   content.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+    <div class="game-screen-header" style="display: flex; align-items: center; justify-content: space-between;">
+      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.4rem 0.8rem; font-size: ${isMobile ? '0.8rem' : '0.9rem'}; flex-shrink: 0;">
         ← Volver
       </button>
-      <div>
-        <h1 class="gradient-text" style="font-size: 1.8rem; font-weight: 800; margin: 0; font-family: var(--font-display);">Feeling vs. Thing</h1>
-        <div style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">Adjectives (-ed vs. -ing)</div>
+      <div style="text-align: center; flex: 1; padding: 0 0.5rem;">
+        <h1 class="gradient-text" style="font-size: clamp(1.1rem, 5vw, 1.8rem); font-weight: 800; margin: 0; font-family: var(--font-display);">Feeling vs. Thing</h1>
+        <div style="font-size: clamp(0.65rem, 2.5vw, 0.8rem); color: var(--color-text-muted); text-align: center;">Adjectives (-ed vs. -ing)</div>
       </div>
-      <div id="timer-target" style="width: 60px; height: 60px;"></div>
+      <div id="timer-target" style="width: ${isMobile ? '44px' : '60px'}; height: ${isMobile ? '44px' : '60px'}; flex-shrink: 0;"></div>
     </div>
 
     <!-- Main Quiz Card -->
-    <div class="glass-panel" id="quiz-card" style="padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; border-radius: var(--radius-lg); position: relative; overflow: hidden; min-height: 250px; justify-content: center; align-items: center;">
+    <div class="glass-panel quiz-card" id="quiz-card" style="padding: ${isMobile ? '1.25rem' : '2rem'}; display: flex; flex-direction: column; gap: 1rem; border-radius: var(--radius-lg); position: relative; overflow: hidden; min-height: ${isMobile ? '180px' : '250px'}; justify-content: center; align-items: center;">
       <!-- Question progress badge -->
       <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;" id="progress-badge">
         Pregunta 1 / 6
       </div>
 
-      <!-- Sentence sentence -->
-      <div id="quiz-sentence" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--color-text); text-align: center; max-width: 90%; line-height: 1.4;">
+      <!-- Sentence -->
+      <div id="quiz-sentence" class="quiz-sentence" style="font-family: var(--font-display); font-size: clamp(1rem, 4vw, 1.5rem); font-weight: 700; color: var(--color-text); text-align: center; max-width: 95%; line-height: 1.4;">
         ...
       </div>
 
       <!-- Subject Tip Tag -->
-      <div id="subject-tip" style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+      <div id="subject-tip" style="font-size: clamp(0.65rem, 2vw, 0.75rem); color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
         Tip: ...
       </div>
     </div>
 
     <!-- Options Group -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%;">
-      <button id="btn-opt-ed" class="btn-premium btn-secondary" style="padding: 1.5rem 1rem; font-size: 1.15rem; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+    <div class="answer-buttons-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: ${isMobile ? '0.6rem' : '1rem'}; width: 100%;">
+      <button id="btn-opt-ed" class="btn-premium btn-secondary" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem 1rem'}; font-size: ${isMobile ? '1rem' : '1.15rem'}; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
         <span id="opt-ed-text">-ed</span>
-        <span style="font-size: 0.7rem; opacity: 0.7; font-weight: 500;">(Feeling / Sentimiento)</span>
+        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Feeling / Sentimiento)</span>
       </button>
-      <button id="btn-opt-ing" class="btn-premium btn-secondary" style="padding: 1.5rem 1rem; font-size: 1.15rem; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+      <button id="btn-opt-ing" class="btn-premium btn-secondary" style="padding: ${isMobile ? '1rem 0.5rem' : '1.5rem 1rem'}; font-size: ${isMobile ? '1rem' : '1.15rem'}; font-weight: 700; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
         <span id="opt-ing-text">-ing</span>
-        <span style="font-size: 0.7rem; opacity: 0.7; font-weight: 500;">(Description / Causa)</span>
+        <span style="font-size: 0.65rem; opacity: 0.7; font-weight: 500;">(Description / Causa)</span>
       </button>
     </div>
   `;

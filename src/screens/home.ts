@@ -17,6 +17,8 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
+  const isMobile = window.innerWidth <= 480;
+
   // Home Screen Content Wrapper
   const content = document.createElement('div');
   content.className = 'glass-panel';
@@ -25,9 +27,10 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '2rem',
+    gap: isMobile ? '1rem' : '2rem',
     maxWidth: '560px',
-    margin: '3rem auto 0 auto',
+    width: '100%',
+    margin: isMobile ? '0.75rem auto 0 auto' : '3rem auto 0 auto',
     animation: 'fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
     textAlign: 'center',
     position: 'relative',
@@ -36,23 +39,23 @@ export function renderHome(container: HTMLElement, navigate: (screen: 'home' | '
 
   content.innerHTML = `
     <!-- Top badge -->
-    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.35rem 0.85rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: -0.5rem; font-family: var(--font-display);">
+    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--color-primary); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: ${isMobile ? '0.7rem' : '0.8rem'}; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: -0.25rem; font-family: var(--font-display);">
       Unidad 1
     </div>
     
     <div>
-      <h1 class="gradient-text" style="font-size: 3.25rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.5px;">Top Notch 2</h1>
-      <h2 style="color: var(--color-text-muted); font-size: 1.25rem; font-weight: 500; font-family: var(--font-body);">Getting Acquainted</h2>
+      <h1 class="gradient-text" style="font-size: clamp(1.75rem, 8vw, 3.25rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.4rem; letter-spacing: -0.5px;">Top Notch 2</h1>
+      <h2 style="color: var(--color-text-muted); font-size: clamp(0.9rem, 4vw, 1.25rem); font-weight: 500; font-family: var(--font-body);">Getting Acquainted</h2>
     </div>
     
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 100%;">
-      <div style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%;">
+      <div style="font-size: ${isMobile ? '0.7rem' : '0.8rem'}; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-display);">
         Tu Pasaporte de Logros
       </div>
       <div id="passport-preview-container" style="animation: float 6s ease-in-out infinite;"></div>
     </div>
     
-    <div style="display: flex; flex-direction: column; gap: 0.85rem; width: 100%; max-width: 320px;">
+    <div style="display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: ${isMobile ? '100%' : '320px'};">
       <button id="btn-play" class="btn-premium btn-primary">
         <span>🎮</span> Jugar
       </button>
