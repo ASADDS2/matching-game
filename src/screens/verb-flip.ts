@@ -20,50 +20,40 @@ export function renderVerbFlip(
   blob2.className = 'bg-blob bg-blob-2';
   container.appendChild(blob2);
 
-  const isMobile = window.innerWidth <= 480;
-
   const content = document.createElement('div');
-  content.style.width = '100%';
-  content.style.maxWidth = isMobile ? '100%' : '800px';
-  content.style.margin = '0.5rem auto 0 auto';
-  content.style.animation = 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-  content.style.position = 'relative';
-  content.style.zIndex = '5';
-  content.style.display = 'flex';
-  content.style.flexDirection = 'column';
-  content.style.gap = isMobile ? '0.85rem' : '1.5rem';
+  content.className = 'screen-content';
 
   // Game UI Header
   content.innerHTML = `
-    <div class="game-screen-header" style="display: flex; align-items: center; justify-content: space-between;">
-      <button id="btn-back" class="btn-premium btn-secondary" style="padding: 0.4rem 0.8rem; font-size: ${isMobile ? '0.8rem' : '0.9rem'}; flex-shrink: 0;">
+    <div class="game-header">
+      <button id="btn-back" class="btn-premium btn-secondary game-header__back">
         ← Volver
       </button>
-      <div style="text-align: center; flex: 1; padding: 0 0.5rem;">
-        <h1 class="gradient-text" style="font-size: clamp(1.1rem, 5vw, 1.8rem); font-weight: 800; margin: 0; font-family: var(--font-display);">Verb Flip</h1>
-        <div style="font-size: clamp(0.65rem, 2.5vw, 0.8rem); color: var(--color-text-muted); text-align: center;">Base ↔ Participle</div>
+      <div class="game-header__title-block">
+        <h1 class="gradient-text game-header__title">Verb Flip</h1>
+        <div class="game-header__subtitle">Base ↔ Participle</div>
       </div>
-      <div id="timer-target" style="width: ${isMobile ? '44px' : '60px'}; height: ${isMobile ? '44px' : '60px'}; flex-shrink: 0;"></div>
+      <div id="timer-target" class="game-header__timer"></div>
     </div>
 
     <!-- Match Status -->
-    <div class="glass-panel" style="padding: 1rem; display: flex; justify-content: space-around; align-items: center; border-radius: var(--radius-md);">
+    <div class="glass-panel stats-row">
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Progress</span>
-        <div id="matches-counter" style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-display);">0 / 6</div>
+        <span class="stats-row__label">Progress</span>
+        <div id="matches-counter" class="stats-row__value">0 / 6</div>
       </div>
-      <div style="width: 1px; height: 30px; background: var(--color-border);"></div>
+      <div class="stats-row__divider"></div>
       <div>
-        <span style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Mistakes</span>
-        <div id="mistakes-counter" style="font-size: 1.4rem; font-weight: 800; color: var(--color-danger); font-family: var(--font-display);">0</div>
+        <span class="stats-row__label">Mistakes</span>
+        <div id="mistakes-counter" class="stats-row__value" style="color: var(--color-danger);">0</div>
       </div>
     </div>
 
     <!-- Cards Grid -->
-    <div id="grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.25rem;"></div>
+    <div id="grid-container" class="card-grid"></div>
 
     <!-- Sentence Banner -->
-    <div id="sentence-banner" style="min-height: 52px; background: rgba(59, 130, 246, 0.06); border: 1px dashed var(--color-primary); border-radius: var(--radius-md); padding: 0.75rem 1rem; color: var(--color-text); font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; transform: translateY(10px); transition: all 0.3s ease;">
+    <div id="sentence-banner" class="info-banner">
       Match the cards to see example sentences!
     </div>
   `;
